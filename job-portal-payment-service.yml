@@ -1,0 +1,15 @@
+# =============================================================================
+# Fetched ONLY by job-portal-payment-service from Config Server.
+# Common settings (eureka, jpa, resilience4j) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9009
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_portal_payment
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+

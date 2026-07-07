@@ -1,0 +1,59 @@
+# =============================================================================
+# Fetched ONLY by job-portal-gateway from Config Server.
+# Common settings (eureka, resilience4j defaults) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9000
+
+spring:
+  cloud:
+    loadbalancer:
+      cache:
+        ttl: 5s
+
+# JWT secret used to validate tokens at the gateway
+jwt:
+  secret: asdfghjklpoiuytrewqzxcvbnmlkjhglpouhggfdsawqwertyyuiioplmnbvcxzasdfgh
+
+# Circuit breaker instances for each downstream service
+resilience4j:
+  circuitbreaker:
+    configs:
+      gateway-default:
+        sliding-window-size: 10
+        minimum-number-of-calls: 5
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 3
+        automatic-transition-from-open-to-half-open-enabled: true
+        register-health-indicator: true
+    instances:
+      job-portal-user-service-cb:
+        base-config: gateway-default
+      job-portal-company-service-cb:
+        base-config: gateway-default
+      job-portal-job-service-cb:
+        base-config: gateway-default
+      job-portal-application-service-cb:
+        base-config: gateway-default
+      job-portal-payment-service-cb:
+        base-config: gateway-default
+      job-portal-subscription-service-cb:
+        base-config: gateway-default
+      job-portal-resume-service-cb:
+        base-config: gateway-default
+      job-portal-preference-service-cb:
+        base-config: gateway-default
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, circuitbreakers, circuitbreakerevents
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true

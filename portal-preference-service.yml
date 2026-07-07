@@ -1,0 +1,23 @@
+# Fetched ONLY by job-portal-preference-service from Config Server.
+# Common settings (eureka, jpa, resilience4j) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9008
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_portal_preference
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+# Job alert and saved-jobs settings
+preference:
+  alert:
+    max-alerts-per-candidate: 10          # cap on active alerts per candidate
+    immediate-dispatch-delay-seconds: 30  # deduplication window before IMMEDIATELY alerts fire
+    daily-dispatch-cron: "0 0 8 * * *"   # 08:00 every day
+    weekly-dispatch-cron: "0 0 8 * * MON" # 08:00 every Monday
+  saved-jobs:
+    max-per-candidate: 500                # soft limit on bookmarked jobs per candidate

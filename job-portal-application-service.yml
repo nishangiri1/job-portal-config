@@ -1,0 +1,23 @@
+# =============================================================================
+# Fetched ONLY by job-portal-application-service from Config Server.
+# Common settings (eureka, jpa, resilience4j) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9004
+
+# ===============================
+# Database Configuration
+# ===============================
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_portal_application
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+# Application-specific settings
+application:
+  interview:
+    reminder-hours-before: 24    # send reminder notification 24h before scheduled interview
+  duplicate-apply-check: true    # enforce one application per candidate per job

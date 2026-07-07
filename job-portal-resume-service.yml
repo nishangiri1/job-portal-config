@@ -1,0 +1,31 @@
+# =============================================================================
+# Fetched ONLY by job-portal-resume-service from Config Server.
+# Common settings (eureka, jpa, resilience4j) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9007
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_portal_resume
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+  # File upload limits for resume documents
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# Resume parsing and storage settings
+resume:
+  parse:
+    max-concurrent-jobs: 5           # max parallel parse jobs running at once
+    timeout-minutes: 10              # mark job FAILED if not completed within this time
+    supported-types: pdf,doc,docx    # allowed resume file MIME types
+  storage:
+    base-url: ${RESUME_STORAGE_BASE_URL:http://localhost:9007/files}
+  default-template: CLASSIC          # template applied when no template is specified

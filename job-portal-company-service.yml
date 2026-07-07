@@ -1,0 +1,14 @@
+# =============================================================================
+# Fetched ONLY by job-portal-company-service from Config Server.
+# Common settings (eureka, jpa, resilience4j) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9003
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_portal_company
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver

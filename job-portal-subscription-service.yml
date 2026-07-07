@@ -1,0 +1,20 @@
+# =============================================================================
+# Fetched ONLY by job-portal-subscription-service from Config Server.
+# Common settings (eureka, jpa, resilience4j) come from application.yml.
+# =============================================================================
+
+server:
+  port: 9005
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/job_portal_subscription
+    username: postgres
+    password:
+    driver-class-name: org.postgresql.Driver
+
+# Subscription expiry scheduler settings
+subscription:
+  expiry-check:
+    cron: "0 0 1 * * *"    # run at 1 AM every day to expire ended subscriptions
+  grace-period-days: 3      # days after endDate before status moves from ACTIVE to EXPIRED
