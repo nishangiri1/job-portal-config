@@ -13,7 +13,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/job_portal_application
     username: postgres
-    password:
+    password: nishan
     driver-class-name: org.postgresql.Driver
 
 # Application-specific settings
